@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import TheSwitch from '@/components/Switch/TheSwitch.vue'
+import TheSwitch from '@/components/TheSwitch/TheSwitch.vue'
 import { useThemeStore } from '@/stores/theme'
 import { computed } from 'vue'
 
