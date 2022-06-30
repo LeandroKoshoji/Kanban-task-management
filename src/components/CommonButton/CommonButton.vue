@@ -18,7 +18,7 @@ interface Props {
   widthSize: string
   color: string
 }
-const props = defineProps<Props>()
+defineProps<Props>()
 </script>
 
 <style scoped lang="scss">
