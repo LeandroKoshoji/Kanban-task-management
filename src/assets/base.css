@@ -49,3 +49,20 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.heading-xl {
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-heading-xl);
+}
+.heading-l {
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-heading-l);
+}
+.heading-m {
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-heading-m);
+}
+.heading-s {
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-heading-s);
+}
