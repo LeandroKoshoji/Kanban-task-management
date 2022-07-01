@@ -1,0 +1,70 @@
+@import '../../assets/responsiveVariables.scss';
+
+.dot-icon {
+    cursor: pointer;
+  }
+  
+  .menu-options {
+    position: absolute;
+    top: 3rem;
+    width: max-content;
+    min-width: 192px;
+    border-radius: var(--border-radius);
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    z-index: 99;
+  
+    @media (max-width: $mobile-ref) {
+      min-width: 0;
+    }
+  
+    &.to-left {
+      right: 0;
+    }
+    &.to-right {
+      left: 0;
+    }
+    &.to-center {
+      transform: translateX(-50%);
+    }
+  
+    &.bg-very-dark-grey {
+      background-color: var(--color-very-dark-grey);
+    }
+    &.bg-white {
+      background-color: var(--color-white);
+    }
+  }
+  
+  .option {
+    cursor: pointer;
+  }
+  .option:hover {
+    text-decoration: underline;
+  }
+  .option-color-black {
+    color: var(--color-black);
+  }
+  .option-color-very-dark-grey {
+    color: var(--color-very-dark-grey);
+  }
+  .option-color-dark-grey {
+    color: var(--color-dark-grey);
+  }
+  .option-color-medium-grey {
+    color: var(--color-medium-grey);
+  }
+  .option-color-light-grey {
+    color: var(--color-light-grey);
+  }
+  .option-color-white {
+    color: var(--color-white);
+  }
+  .option-color-main-purple {
+    color: var(--color-main-purple);
+  }
+  .option-color-red {
+    color: var(--color-red);
+  }
