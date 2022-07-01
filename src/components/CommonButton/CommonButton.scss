@@ -34,22 +34,25 @@ button {
       color: var(--color-white);
     }
   
-    &.large {
+    &.height-large {
       height: 48px;
     }
-    &.small {
+    &.height-medium {
       height: 40px;
     }
+    &.height-small {
+      height: 32px;
+    }
   
-    &.full {
+    &.width-full {
       width: 100%;
     }
   
-    &.medium {
+    &.width-medium {
       min-width: 255px;
     }
   
-    &.small {
+    &.width-small {
       padding: 0 18px;
     }
 }
