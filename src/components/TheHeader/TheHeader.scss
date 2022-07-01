@@ -1,0 +1,52 @@
+@import '../../assets/responsiveVariables.scss';
+
+header {
+    display: flex;
+    align-items: center;
+    height: 97px;
+    
+    @media (max-width: $tablet-ref) {
+        height: 81px;
+    }
+    
+    @media (max-width: $mobile-ref) {
+        height: 64px;
+    }
+    
+    &.dark {
+        color: var(--color-white);
+        background-color: var(--color-dark-grey);
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        padding-left: 24px;
+        height: 100%;
+        width: 300px;
+
+        @media (max-width: $tablet-ref) {
+            width: auto;
+            padding: 0 24px;
+        }
+    }
+
+    .board-infos {
+        flex: 1;
+        display: flex;
+        align-items: center;
+
+        .board-name {
+            flex: 1;
+        }
+        .dot-menu {
+            padding-left: 2rem;
+            margin-right: 2rem;
+            
+            @media (max-width: $mobile-ref) {
+                padding-left: 0.5rem;
+                margin-right: 1rem;
+            }
+        }
+    }
+}
