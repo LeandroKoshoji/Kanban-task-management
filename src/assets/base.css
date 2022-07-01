@@ -26,6 +26,8 @@
  --fw-bold: bold;
 
  --border-radius: 6px;
+ --mobile-ref: 540px
+
 }
 
 *,
@@ -65,4 +67,13 @@ body {
 .heading-s {
   font-weight: var(--fw-bold);
   font-size: var(--fs-heading-s);
+}
+
+.body-l {
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-body-l);
+}
+.body-m {
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-body-m);
 }
