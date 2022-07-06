@@ -95,6 +95,9 @@
     }
 
     &.dark {
+      &::before {
+        background-color: var(--color-main-purple);
+      }
       &::after {
         background-color: var(--color-dark-grey);
       }
