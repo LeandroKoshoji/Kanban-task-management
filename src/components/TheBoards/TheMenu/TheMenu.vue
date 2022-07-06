@@ -1,14 +1,16 @@
 <template>
   <div class="wrapper">
     <div class="menu" :class="themeStore.theme" v-if="showMenu">
-      <p class="boards-count body-m">ALL BOARDS (2)</p>
+      <p class="boards-count body-m">ALL BOARDS ({{ boardsInfo.quantity }})</p>
       <div class="board-names-options">
         <MenuOption
-          v-for="board in boards.boards"
+          v-for="board in boardsInfo.boards"
           :key="board.id"
+          :id="board.id"
           :name="board.name"
           icon="board"
-          :selected="board.id === 1"
+          :selected="boardsInfo.selectedId === board.id"
+          @optionClick="selectBoard"
         />
         <MenuOption name="+Create New Board" icon="board" />
       </div>
@@ -30,9 +32,8 @@
 import ThemeSwitcher from '@/components/ThemeSwitcher/ThemeSwitcher.vue'
 import MenuOption from '@/components/TheBoards/TheMenu/MenuOption/MenuOption.vue'
 import { useThemeStore } from '@/stores/theme'
-import { ref, defineEmits } from 'vue'
-
-import { data as boards } from '../../../data.js'
+import { useBoardStore } from '@/stores/boards'
+import { ref, defineEmits, computed } from 'vue'
 
 const showMenu = ref(true)
 
@@ -47,6 +48,19 @@ const closeMenu = () => {
   showMenu.value = false
 }
 const themeStore = useThemeStore()
+const boardStore = useBoardStore()
+
+const boardsInfo = computed(() => ({
+  selectedId: boardStore.selected?.id,
+  boards: boardStore.boards,
+  quantity: boardStore.boardsQuantity
+}))
+
+const selectBoard = (id?: number) => {
+  boardStore.selectBoard(id)
+}
+
+//TODO: Make 'createBoard' function
 </script>
 
 <style scoped lang="scss">
