@@ -4,6 +4,7 @@ header {
     display: flex;
     align-items: center;
     height: 97px;
+    border-bottom: 1px solid var(--color-lines-light);
     
     @media (max-width: $tablet-ref) {
         height: 81px;
@@ -16,6 +17,7 @@ header {
     &.dark {
         color: var(--color-white);
         background-color: var(--color-dark-grey);
+        border-bottom: 1px solid var(--color-lines-dark);
     }
 
     .logo {

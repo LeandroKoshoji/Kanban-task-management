@@ -1,0 +1,18 @@
+@import '@/assets/responsiveVariables.scss';
+
+.boards {
+    background-color: var(--color-light-grey);
+    min-height: calc(100vh - 97px);
+    min-width: 100vw;
+    display: flex;
+  
+    @media (max-width: $tablet-ref) {
+        min-height: calc(100vh - 81px);
+    }
+  
+    @media (max-width: $mobile-ref) {
+        min-height: calc(100vh - 64px);
+    }
+
+    
+}
