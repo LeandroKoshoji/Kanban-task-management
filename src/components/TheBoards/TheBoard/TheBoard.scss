@@ -41,6 +41,17 @@
       .create-text {
         margin: auto;
       }
+
+      &:hover {
+        background-color: var(--color-white);
+      }
+      &.dark {
+        background-color: var(--color-dark-grey);
+
+        &:hover {
+          background-color: var(--color-lines-dark);
+        }
+      }
     }
   }
   

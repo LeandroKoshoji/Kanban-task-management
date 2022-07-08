@@ -26,7 +26,7 @@
     </div>
 
     <div class="column-create-container" v-if="columnsDisplay.show">
-      <div class="column-create">
+      <div class="column-create" :class="themeStore.theme">
         <p class="create-text heading-xl">+New Column</p>
       </div>
     </div>
