@@ -1,6 +1,6 @@
 <template>
-  <div class="wrapper">
-    <div class="menu" :class="themeStore.theme" v-if="showMenu">
+  <div class="menu-wrapper">
+    <div class="menu" v-if="menuStore.menu" :class="themeStore.theme">
       <p class="boards-count body-m">ALL BOARDS ({{ boardsInfo.quantity }})</p>
       <div class="board-names-options">
         <MenuOption
@@ -17,9 +17,19 @@
       <div class="theme-wrapper">
         <ThemeSwitcher />
       </div>
-      <MenuOption name="Hide Side Bar" icon="hide" @optionClick="closeMenu" />
+      <MenuOption
+        name="Hide Side Bar"
+        icon="hide"
+        @optionClick="menuStore.closeMenu"
+        v-if="!isMobile"
+      />
     </div>
-    <div v-if="!showMenu" class="toggle-menu" @click="openMenu">
+    <div
+      v-if="!menuStore.menu && !isMobile"
+      class="toggle-menu"
+      :class="themeStore.theme"
+      @click="menuStore.openMenu"
+    >
       <img
         :src="require('../../../assets/icons/icon-hide-sidebar.svg')"
         alt=""
@@ -33,20 +43,13 @@ import ThemeSwitcher from '@/components/ThemeSwitcher/ThemeSwitcher.vue'
 import MenuOption from '@/components/TheBoards/TheMenu/MenuOption/MenuOption.vue'
 import { useThemeStore } from '@/stores/theme'
 import { useBoardStore } from '@/stores/boards'
-import { ref, defineEmits, computed } from 'vue'
+import { useMenuStore } from '@/stores/menu'
+import { ref, computed, onBeforeMount } from 'vue'
 
-const showMenu = ref(true)
+const menuStore = useMenuStore()
+const outerWidth = ref()
+const isMobile = ref()
 
-defineEmits<{
-  (event: 'closeMenu'): void
-}>()
-
-const openMenu = () => {
-  showMenu.value = true
-}
-const closeMenu = () => {
-  showMenu.value = false
-}
 const themeStore = useThemeStore()
 const boardStore = useBoardStore()
 
@@ -59,7 +62,18 @@ const boardsInfo = computed(() => ({
 const selectBoard = (id?: number) => {
   boardStore.selectBoard(id)
 }
+const handleWindowOuterWidth = () => {
+  outerWidth.value = window.outerWidth
+  isMobile.value = outerWidth.value <= 540
+  if (isMobile.value) {
+    menuStore.closeMenu()
+  }
+}
 
+onBeforeMount(() => {
+  handleWindowOuterWidth()
+  window.addEventListener('resize', handleWindowOuterWidth)
+})
 //TODO: Make 'createBoard' function
 </script>
 

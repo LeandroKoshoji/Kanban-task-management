@@ -4,9 +4,22 @@
       <img :src="logoToRender" alt="Logo" class="logo-img" />
     </div>
     <div class="board-infos">
-      <p class="board-name" :class="boardNameInfos.cssClass">
+      <p
+        class="board-name"
+        :class="boardNameInfos.cssClass"
+        @click="menuStore.toggleMenu"
+      >
         {{ boardNameInfos.name }}
-        <img :src="icons.arrowDown" alt="" />
+        <img
+          :src="icons.arrowDown"
+          alt="menu-arrow-down"
+          v-if="isMobile && !menuStore.showMenu"
+        />
+        <img
+          :src="icons.arrowUp"
+          alt="menu-arrow-up"
+          v-if="isMobile && menuStore.showMenu"
+        />
       </p>
       <CommonButton heightSize="small" widthSize="small" color="primary">
         <img
@@ -31,8 +44,10 @@ import CommonButton from '@/components/CommonButton/CommonButton.vue'
 import DotMenu from '../DotMenu/DotMenu.vue'
 import { computed, onBeforeMount, ref } from 'vue'
 import { useThemeStore } from '@/stores/theme'
+import { useMenuStore } from '@/stores/menu'
 
 const themeStore = useThemeStore()
+const menuStore = useMenuStore()
 
 const outerWidth = ref()
 const isMobile = ref()
