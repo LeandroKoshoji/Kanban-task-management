@@ -6,5 +6,5 @@ export const generateRandomColor = () => {
 export const generateID = () => {
   const date = new Date()
 
-  return date.getTime()
+  return Math.floor(date.getTime() * Math.random())
 }
