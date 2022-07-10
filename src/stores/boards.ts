@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia'
 import { IBoard } from '@/types/boards.interface'
+import { ITask } from '@/types/tasks.interface'
+import { generateID } from '@/utils'
 
 interface IBoardsState {
   selected: IBoard | null
@@ -13,9 +15,11 @@ const boards = [
     name: 'Platform Launch',
     columns: [
       {
+        id: generateID(),
         name: 'Todo',
         tasks: [
           {
+            id: generateID(),
             title: 'Build UI for onboarding flow',
             description: '',
             status: 'Todo',
@@ -35,6 +39,7 @@ const boards = [
             ]
           },
           {
+            id: generateID(),
             title: 'Build UI for search',
             description: '',
             status: 'Todo',
@@ -46,6 +51,7 @@ const boards = [
             ]
           },
           {
+            id: generateID(),
             title: 'Build settings UI',
             description: '',
             status: 'Todo',
@@ -61,6 +67,7 @@ const boards = [
             ]
           },
           {
+            id: generateID(),
             title: 'QA and test all major user journeys',
             description:
               'Once we feel version one is ready, we need to rigorously test it both internally and externally to identify any major gaps.',
@@ -79,9 +86,11 @@ const boards = [
         ]
       },
       {
+        id: generateID(),
         name: 'Doing',
         tasks: [
           {
+            id: generateID(),
             title: 'Design settings and search pages',
             description: '',
             status: 'Doing',
@@ -101,6 +110,7 @@ const boards = [
             ]
           },
           {
+            id: generateID(),
             title: 'Add account management endpoints',
             description: '',
             status: 'Doing',
@@ -120,6 +130,7 @@ const boards = [
             ]
           },
           {
+            id: generateID(),
             title: 'Design onboarding flow',
             description: '',
             status: 'Doing',
@@ -139,6 +150,7 @@ const boards = [
             ]
           },
           {
+            id: generateID(),
             title: 'Add search enpoints',
             description: '',
             status: 'Doing',
@@ -154,6 +166,7 @@ const boards = [
             ]
           },
           {
+            id: generateID(),
             title: 'Add authentication endpoints',
             description: '',
             status: 'Doing',
@@ -169,6 +182,7 @@ const boards = [
             ]
           },
           {
+            id: generateID(),
             title:
               'Research pricing points of various competitors and trial different business models',
             description:
@@ -193,9 +207,11 @@ const boards = [
         ]
       },
       {
+        id: generateID(),
         name: 'Done',
         tasks: [
           {
+            id: generateID(),
             title: 'Conduct 5 wireframe tests',
             description:
               'Ensure the layout continues to make sense and we have strong buy-in from potential users.',
@@ -208,6 +224,7 @@ const boards = [
             ]
           },
           {
+            id: generateID(),
             title: 'Create wireframe prototype',
             description:
               'Create a greyscale clickable wireframe prototype to test our asssumptions so far.',
@@ -220,6 +237,7 @@ const boards = [
             ]
           },
           {
+            id: generateID(),
             title: 'Review results of usability tests and iterate',
             description:
               "Keep iterating through the subtasks until we're clear on the core concepts for the app.",
@@ -241,6 +259,7 @@ const boards = [
             ]
           },
           {
+            id: generateID(),
             title:
               'Create paper prototypes and conduct 10 usability tests with potential customers',
             description: '',
@@ -257,6 +276,7 @@ const boards = [
             ]
           },
           {
+            id: generateID(),
             title: 'Market discovery',
             description:
               'We need to define and refine our core product. Interviews will help us learn common pain points and help us define the strongest MVP.',
@@ -269,6 +289,7 @@ const boards = [
             ]
           },
           {
+            id: generateID(),
             title: 'Competitor analysis',
             description: '',
             status: 'Done',
@@ -284,6 +305,7 @@ const boards = [
             ]
           },
           {
+            id: generateID(),
             title: 'Research the market',
             description:
               'We need to get a solid overview of the market to ensure we have up-to-date estimates of market size and demand.',
@@ -308,9 +330,11 @@ const boards = [
     name: 'Marketing Plan',
     columns: [
       {
+        id: generateID(),
         name: 'Todo',
         tasks: [
           {
+            id: generateID(),
             title: 'Plan Product Hunt launch',
             description: '',
             status: 'Todo',
@@ -342,6 +366,7 @@ const boards = [
             ]
           },
           {
+            id: generateID(),
             title: 'Share on Show HN',
             description: '',
             status: '',
@@ -361,6 +386,7 @@ const boards = [
             ]
           },
           {
+            id: generateID(),
             title: 'Write launch article to publish on multiple channels',
             description: '',
             status: '',
@@ -386,10 +412,12 @@ const boards = [
         ]
       },
       {
+        id: generateID(),
         name: 'Doing',
         tasks: []
       },
       {
+        id: generateID(),
         name: 'Done',
         tasks: []
       }
@@ -400,9 +428,11 @@ const boards = [
     name: 'Roadmap',
     columns: [
       {
+        id: generateID(),
         name: 'Now',
         tasks: [
           {
+            id: generateID(),
             title: 'Launch version one',
             description: '',
             status: '',
@@ -418,6 +448,7 @@ const boards = [
             ]
           },
           {
+            id: generateID(),
             title: 'Review early feedback and plan next steps for roadmap',
             description:
               "Beyond the initial launch, we're keeping the initial roadmap completely empty. This meeting will help us plan out our next steps based on actual customer feedback.",
@@ -440,10 +471,12 @@ const boards = [
         ]
       },
       {
+        id: generateID(),
         name: 'Next',
         tasks: []
       },
       {
+        id: generateID(),
         name: 'Later',
         tasks: []
       }
@@ -482,6 +515,12 @@ export const useBoardStore = defineStore('boardStore', {
     },
     createBoard(parameters: IBoard) {
       this.boards.push(parameters)
+    },
+    createTask(parameters: any) {
+      const columns = this.selected?.columns
+      const targetColumn = columns?.find((c) => c.id === parameters.status)
+
+      targetColumn?.tasks?.push(parameters)
     }
   }
 })
