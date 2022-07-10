@@ -14,11 +14,7 @@
         </p>
       </div>
       <Container class="tasks-container">
-        <TheTaskCard
-          v-for="(task, index) in props.tasks"
-          :key="index"
-          :task="task"
-        />
+        <TheTaskCard v-for="task in props.tasks" :key="task.id" :task="task" />
       </Container>
     </div>
   </Draggable>
@@ -29,10 +25,11 @@ import TheTaskCard from '../TheTaskCard/TheTaskCard.vue'
 import { Draggable, Container } from 'vue3-smooth-dnd'
 import { defineProps, onBeforeMount, ref } from 'vue'
 import { generateRandomColor } from '@/utils'
+import { ITask } from '@/types/tasks.interface'
 
 interface Props {
   columnName?: string
-  tasks?: object[]
+  tasks?: ITask[]
   tasksMode?: boolean
 }
 
