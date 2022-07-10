@@ -3,8 +3,8 @@
     <div class="columns-tasks-container" v-if="columnsDisplay.show">
       <Container orientation="horizontal" class="columns-container">
         <TheColumn
-          v-for="(item, index) in boardColumns"
-          :key="index"
+          v-for="item in boardColumns"
+          :key="item.id"
           :columnName="item.name"
           :tasks="item.tasks"
           :tasksMode="true"
