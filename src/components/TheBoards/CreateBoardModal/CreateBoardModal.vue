@@ -65,6 +65,7 @@ interface IColumn {
   error: boolean
 }
 interface ICreateBoard {
+  id: number
   name: string
   columns: IColumn[]
   error: boolean
@@ -75,6 +76,7 @@ interface ITextObject {
 }
 
 const createBoard = ref<ICreateBoard>({
+  id: generateID(),
   name: '',
   columns: [],
   error: false
@@ -100,6 +102,7 @@ const removeColumn = (id?: number) => {
 }
 
 const saveChanges = () => {
+  const boardId = createBoard.value.id
   const boardName = createBoard.value.name
   const boardColumns = createBoard.value.columns
   const isNameEmpty = createBoard.value.name === ''
@@ -116,11 +119,13 @@ const saveChanges = () => {
   }
 
   const parameters = {
+    id: boardId,
     name: boardName,
     columns: boardColumns.map((c) => ({ id: c.id, name: c.name }))
   }
 
-  console.log({ parameters })
+  boardStore.createBoard(parameters)
+  boardStore.closeCreateBoardModal()
 }
 </script>
 
