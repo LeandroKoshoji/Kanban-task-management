@@ -7,6 +7,7 @@ export interface IBoard {
 }
 
 interface IBoardColum {
+  id: number
   name: string
   tasks?: ITask[]
 }
