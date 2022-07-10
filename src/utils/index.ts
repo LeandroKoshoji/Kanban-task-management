@@ -3,3 +3,8 @@ export const generateRandomColor = () => {
 
   return '#' + randomColor
 }
+export const generateID = () => {
+  const date = new Date()
+
+  return date.getTime()
+}

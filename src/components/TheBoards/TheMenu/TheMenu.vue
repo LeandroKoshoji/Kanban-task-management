@@ -12,7 +12,11 @@
           :selected="boardsInfo.selectedId === board.id"
           @optionClick="selectBoard"
         />
-        <MenuOption name="+Create New Board" icon="board" />
+        <MenuOption
+          name="+Create New Board"
+          icon="board"
+          @click="boardStore.openCreateBoardModal"
+        />
       </div>
       <div class="theme-wrapper">
         <ThemeSwitcher />

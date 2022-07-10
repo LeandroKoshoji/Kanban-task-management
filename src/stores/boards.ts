@@ -4,6 +4,7 @@ import { IBoard } from '@/types/boards.interface'
 interface IBoardsState {
   selected: IBoard | null
   boards: IBoard[]
+  showCreateBoardModal: boolean
 }
 const boards = [
   {
@@ -451,7 +452,8 @@ const boards = [
 export const useBoardStore = defineStore('boardStore', {
   state: (): IBoardsState => ({
     selected: null,
-    boards: boards
+    boards: boards,
+    showCreateBoardModal: false
   }),
   getters: {
     boardsQuantity(): number {
@@ -463,6 +465,12 @@ export const useBoardStore = defineStore('boardStore', {
       const board = this.boards.find((board) => board.id === id)
       if (!board) return
       this.selected = board
+    },
+    openCreateBoardModal() {
+      this.showCreateBoardModal = true
+    },
+    closeCreateBoardModal() {
+      this.showCreateBoardModal = false
     }
   }
 })
