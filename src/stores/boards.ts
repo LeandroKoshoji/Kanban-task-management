@@ -5,6 +5,7 @@ interface IBoardsState {
   selected: IBoard | null
   boards: IBoard[]
   showCreateBoardModal: boolean
+  showCreateTaskModal: boolean
 }
 const boards = [
   {
@@ -453,7 +454,8 @@ export const useBoardStore = defineStore('boardStore', {
   state: (): IBoardsState => ({
     selected: null,
     boards: boards,
-    showCreateBoardModal: false
+    showCreateBoardModal: false,
+    showCreateTaskModal: false
   }),
   getters: {
     boardsQuantity(): number {
@@ -471,6 +473,15 @@ export const useBoardStore = defineStore('boardStore', {
     },
     closeCreateBoardModal() {
       this.showCreateBoardModal = false
+    },
+    openCreateTaskModal() {
+      this.showCreateTaskModal = true
+    },
+    closeCreateTaskModal() {
+      this.showCreateTaskModal = false
+    },
+    createBoard(parameters: IBoard) {
+      this.boards.push(parameters)
     }
   }
 })

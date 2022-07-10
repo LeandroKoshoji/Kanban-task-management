@@ -21,7 +21,12 @@
           v-if="isMobile && menuStore.showMenu"
         />
       </p>
-      <CommonButton heightSize="small" widthSize="small" color="primary">
+      <CommonButton
+        heightSize="small"
+        widthSize="small"
+        color="primary"
+        @click="boardStore.openCreateTaskModal"
+      >
         <img
           v-if="commonButtonInfos.isMobile"
           :src="icons.plus"
@@ -45,9 +50,11 @@ import DotMenu from '../DotMenu/DotMenu.vue'
 import { computed, onBeforeMount, ref } from 'vue'
 import { useThemeStore } from '@/stores/theme'
 import { useMenuStore } from '@/stores/menu'
+import { useBoardStore } from '@/stores/boards'
 
 const themeStore = useThemeStore()
 const menuStore = useMenuStore()
+const boardStore = useBoardStore()
 
 const outerWidth = ref()
 const isMobile = ref()
@@ -78,7 +85,7 @@ const logoToRender = computed(() => {
 
 const boardNameInfos = computed(() => {
   const cssClass = isMobile.value ? 'heading-l' : 'heading-xl'
-  const name = 'Plataforma Launch'
+  const name = boardStore.selected?.name || ''
   return {
     cssClass,
     name
